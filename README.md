@@ -14,6 +14,13 @@ Android -> [rave-android](https://github.com/Flutterwave/rave-android)
 tns plugin add nativescript-ravepay-simple
 ```
 
+## Screenshots
+### iOS
+![Alt text](/screenshots/ios.png "iOS Screenshot")
+
+### Android
+![Alt text](/screenshots/android.png "Android Screenshot")
+
 ## Usage 
 	
 ```javascript
@@ -64,8 +71,6 @@ tns plugin add nativescript-ravepay-simple
 ```
 
 ## API
-
-Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
     
 | Property | Description | Default | Required |
 | --- | --- | -- | --- |
