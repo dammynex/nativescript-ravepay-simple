@@ -1,0 +1,3 @@
+platform :ios, '11.0'
+
+pod 'RaveSDK', :git => 'https://github.com/dammynex/RaveSDK-iOS.git'

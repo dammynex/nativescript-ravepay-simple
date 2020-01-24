@@ -7,6 +7,6 @@
     </ActionBar>
 
     <GridLayout>
-        <!-- Add your page content here -->
+        <Button text="Pay" tap="onTap" />
     </GridLayout>
 </Page>

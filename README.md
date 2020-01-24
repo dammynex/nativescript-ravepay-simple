@@ -1,39 +1,85 @@
 # nativescript-ravepay-simple
 
-Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
+Receive payments using Flutterwave's RavePay
 
-Then describe what's the purpose of your plugin. 
+## Requirements
 
-In case you develop UI plugin, this is where you can add some screenshots.
+iOS >= 11.0 -> [RaveSDK-iOS](https://github.com/dammynex/RaveSDK-iOS)
 
-## (Optional) Prerequisites / Requirements
-
-Describe the prerequisites that the user need to have installed before using your plugin. See [nativescript-firebase plugin](https://github.com/eddyverbruggen/nativescript-plugin-firebase) for example.
+Android -> [rave-android](https://github.com/Flutterwave/rave-android)
 
 ## Installation
-
-Describe your plugin installation steps. Ideally it would be something like:
 
 ```javascript
 tns plugin add nativescript-ravepay-simple
 ```
 
 ## Usage 
-
-Describe any usage specifics for your plugin. Give examples for Android, iOS, Angular if needed. See [nativescript-drop-down](https://www.npmjs.com/package/nativescript-drop-down) for example.
 	
 	```javascript
-    Usage code snippets here
-    ```)
+    import { RavepaySimple } from 'nativescript-ravepay-simple'
+
+    let rave = new RavePaySimple()
+    rave.amount = "250"
+    rave.email = "[Email]"
+    rave.encryptionKey = "[Encryption Key]"
+    rave.publicKey = "[Public Key]"
+    rave.firstName = "Dammy"
+    rave.lastName = "Nex"
+    rave.phoneNumber = "[Phone]"
+    rave.isStaging = true
+    rave.transactionRef = "lfneioefjoief"
+
+    rave.pay()
+        .then((res) => {
+            let {status, data} = res
+
+            switch(status) {
+                case RavepaySimple.PAYMENT_SUCCESS:
+
+                    //Successful payment
+
+                    /* It is recommended you confirm transaction
+                     before giving value */
+                
+                    let reference = data.txRef
+                    console.log(reference);
+                    break;
+
+                case RavepaySimple.PAYMENT_ERROR:
+                    //Payment failed
+                    console.log('Payment Error');
+                    break;
+
+                case RavepaySimple.PAYMENT_CANCELLED:
+                    //User cancelled payment
+                    setTimeout(() => alert('Payment cancelled'), 1000);
+                    break;
+            }
+        })
+        .catch(err => {
+            //Something totally went wrong
+            console.log(err)
+        })
+    ```
 
 ## API
 
 Describe your plugin methods and properties here. See [nativescript-feedback](https://github.com/EddyVerbruggen/nativescript-feedback) for example.
     
-| Property | Default | Description |
-| --- | --- | --- |
-| some property | property default value | property description, default values, etc.. |
-| another property | property default value | property description, default values, etc.. |
+| Property | Description | Default | Required |
+| --- | --- | -- | --- |
+| country | Country to charge from | NG | Yes |
+| currencyCode | Currency to charge from | NGN | Yes |
+| isStaging | Set staging mode to demo or live | true | Yes |
+| amount | Amount to charge | null | Yes |
+| email | Customer's email address | null | Yes |
+| phoneNumber | Customer's valid phone number | null | Yes |
+| firstName | Customer's first name | null | Yes |
+| lastName | Customer's last name | null | Yes |
+| encryptionKey | Your RavePay encryption key | null | Yes |
+| publicKey | Your RavePay public key | null | Yes |
+| transactionRef | Payment transaction reference | null | Yes |
     
 ## License
 
