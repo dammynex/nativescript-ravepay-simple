@@ -16,7 +16,7 @@ tns plugin add nativescript-ravepay-simple
 
 ## Usage 
 	
-	```javascript
+```javascript
     import { RavepaySimple } from 'nativescript-ravepay-simple'
 
     let rave = new RavePaySimple()
@@ -24,8 +24,8 @@ tns plugin add nativescript-ravepay-simple
     rave.email = "[Email]"
     rave.encryptionKey = "[Encryption Key]"
     rave.publicKey = "[Public Key]"
-    rave.firstName = "Dammy"
-    rave.lastName = "Nex"
+    rave.firstName = "Salawu"
+    rave.lastName = "Oluwadamilola"
     rave.phoneNumber = "[Phone]"
     rave.isStaging = true
     rave.transactionRef = "lfneioefjoief"
@@ -61,7 +61,7 @@ tns plugin add nativescript-ravepay-simple
             //Something totally went wrong
             console.log(err)
         })
-    ```
+```
 
 ## API
 
