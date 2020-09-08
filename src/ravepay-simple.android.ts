@@ -1,5 +1,9 @@
 import { Common, PaymentOptions, PaymentResponse } from './ravepay-simple.common';
-import * as app from 'tns-core-modules/application/application';
+import {
+    AndroidApplication,
+    AndroidActivityResultEventData,
+    Application
+} from '@nativescript/core';
 
 declare const com;
 
@@ -13,7 +17,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
     constructor() {
         super();
-        this._config = new RavePayManager(app.android.foregroundActivity);
+        this._config = new RavePayManager(Application.android.foregroundActivity);
     }
 
     get android() {
@@ -24,9 +28,9 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
         return new Promise((resolve, reject) => {
             this.init().then(() => {
-                app.android.on(app.AndroidApplication.activityResultEvent, (args: app.AndroidActivityResultEventData) => {
+                Application.android.on(AndroidApplication.activityResultEvent, (args: AndroidActivityResultEventData) => {
 
-                    app.android.off(app.AndroidApplication.activityResultEvent);
+                    Application.android.off(AndroidApplication.activityResultEvent);
 
                     let requestCode = args.requestCode;
                     let resultCode = args.resultCode;

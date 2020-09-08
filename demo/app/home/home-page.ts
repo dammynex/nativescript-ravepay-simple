@@ -6,8 +6,7 @@ a code-behind file. The code-behind is a great place to place your view
 logic, and to set up your page’s data binding.
 */
 
-import { NavigatedData, Page } from "tns-core-modules/ui/page";
-
+import { NavigatedData, Page } from "@nativescript/core";
 import { HomeViewModel } from "./home-view-model";
 
 export function onNavigatingTo(args: NavigatedData) {
@@ -20,8 +19,8 @@ export function onTap() {
     let rave = new RavepaySimple()
     rave.amount = "10"
     rave.email = "damilolaofficial@gmail.com"
-    rave.encryptionKey = "[Encryption key]"
-    rave.publicKey = "[Public Key]"
+    rave.encryptionKey = "FLWSECK_TESTa274f8991495"
+    rave.publicKey = "FLWPUBK_TEST-f4080f378297f4c5481bcdeb7c406ff2-X"
     rave.firstName = "Dammy"
     rave.lastName = "Nex"
     rave.phoneNumber = "09061668519"
