@@ -1,5 +1,5 @@
 import { Common, PaymentOptions, PaymentResponse } from './ravepay-simple.common';
-import { topmost } from 'tns-core-modules/ui/frame/frame';
+import { Frame } from '@nativescript/core';
 
 declare const NSRaveConfig, NSObject, NSRaveDelegate;
 
@@ -50,7 +50,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
                 // @ts-ignore
                 let delegate = Delegator.new();
-                let view = topmost().currentPage.ios;
+                let view = Frame.topmost().currentPage.ios;
 
                 config.delegate = delegate;
                 config.initRaveWithView(view);
