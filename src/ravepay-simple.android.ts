@@ -7,8 +7,8 @@ import {
 
 declare const com;
 
-const RavePayManager = com.flutterwave.raveandroid.RavePayManager;
-const RaveConstants = com.flutterwave.raveandroid.RaveConstants;
+const RaveUiManager = com.flutterwave.raveandroid.RaveUiManager;
+const RaveConstants = com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
 const RavePayActivity = com.flutterwave.raveandroid.RavePayActivity;
 
 export class RavepaySimple extends Common implements PaymentOptions {
@@ -17,7 +17,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
     constructor() {
         super();
-        this._config = new RavePayManager(Application.android.foregroundActivity);
+        this._config = new RaveUiManager(Application.android.foregroundActivity);
     }
 
     get android() {
@@ -41,17 +41,18 @@ export class RavepaySimple extends Common implements PaymentOptions {
                     }
 
                     let response = JSON.parse(data.getStringExtra('response'));
+                    let resdata = response ? response.data : null;
 
                     if (resultCode == RavePayActivity.RESULT_SUCCESS) {
-                        return resolve(new PaymentResponse(RavepaySimple.PAYMENT_SUCCESS, response ? response.data : null));
+                        return resolve(new PaymentResponse(RavepaySimple.PAYMENT_SUCCESS, resdata));
                     }
 
                     if (resultCode == RavePayActivity.RESULT_ERROR) {
-                        return resolve(new PaymentResponse(RavepaySimple.PAYMENT_ERROR, response ? response.data : null));
+                        return resolve(new PaymentResponse(RavepaySimple.PAYMENT_ERROR, resdata));
                     }
 
                     if (resultCode == RavePayActivity.RESULT_CANCELLED) {
-                        return resolve(new PaymentResponse(RavepaySimple.PAYMENT_CANCELLED, response ? response.data : null));
+                        return resolve(new PaymentResponse(RavepaySimple.PAYMENT_CANCELLED, resdata));
                     }
 
                     reject(null);
@@ -71,7 +72,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
                     .onStagingEnv(this.isStaging)
                     .acceptCardPayments(true)
                     .setTxRef(this.transactionRef)
-                    .showStagingLabel(false)
+                    // .showStagingLabel(false)
                     .allowSaveCardFeature(false)
                     .initialize();
             })

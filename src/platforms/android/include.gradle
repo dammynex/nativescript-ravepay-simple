@@ -11,5 +11,5 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.Flutterwave:rave-android:1.0.48'
+    implementation 'com.github.Flutterwave:rave-android:2.1.8'
 }

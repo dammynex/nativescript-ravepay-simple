@@ -34,7 +34,7 @@ export function onTap() {
 
         switch(status) {
             case RavepaySimple.PAYMENT_SUCCESS:
-                console.log(ref);
+                console.log('DONE', data);
                 break;
 
             case RavepaySimple.PAYMENT_ERROR:
