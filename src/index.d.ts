@@ -2,9 +2,10 @@ import { Common, PaymentOptions, PaymentResponse } from './ravepay-simple.common
 
 export declare class PaymentResponse {
   status: String;
+  ref: String;
   data: any; 
 
-  constructor(status: String, ref: String, data: any);
+  constructor(status: String, ref: String, data: any, ref: String = '');
 }
 
 export declare class RavepaySimple extends Common {

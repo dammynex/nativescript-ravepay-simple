@@ -1,4 +1,4 @@
-import { RavepaySimple } from 'nativescript-ravepay-simple';
+import { RavepaySimple, PaymentResponse } from 'nativescript-ravepay-simple';
 
 /*
 In NativeScript, a file with the same name as an XML file is known as
@@ -27,26 +27,26 @@ export function onTap() {
     rave.isStaging = false
     rave.transactionRef = "lfneioefjoief"
 
+
     rave.pay()
-        .then((res) => {
-            let {status, data} = res
+    .then((res: PaymentResponse) => {
+        let {status, data, ref} = res;
 
-            switch(status) {
-                case RavepaySimple.PAYMENT_SUCCESS:
-                    let reference = data.txRef
-                    console.log(reference);
-                    break;
+        switch(status) {
+            case RavepaySimple.PAYMENT_SUCCESS:
+                console.log(ref);
+                break;
 
-                case RavepaySimple.PAYMENT_ERROR:
-                    console.log('Payment Error');
-                    break;
+            case RavepaySimple.PAYMENT_ERROR:
+                console.log('Payment Error');
+                break;
 
-                case RavepaySimple.PAYMENT_CANCELLED:
-                    setTimeout(() => alert('Payment cancelled'), 1000);
-                    break;
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            case RavepaySimple.PAYMENT_CANCELLED:
+                setTimeout(() => alert('Payment cancelled'), 1000);
+                break;
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }

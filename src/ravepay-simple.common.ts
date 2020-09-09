@@ -1,10 +1,12 @@
 export class PaymentResponse {
   status: String;
+  ref: String;
   data: any;
 
-  constructor(status: String, data: any) {
+  constructor(status: String, data: any, ref: String = '') {
     this.status = status;
     this.data = data;
+    this.ref = ref;
   }
 }
 
