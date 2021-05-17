@@ -72,7 +72,6 @@ export class RavepaySimple extends Common implements PaymentOptions {
                     .onStagingEnv(this.isStaging)
                     .acceptCardPayments(true)
                     .setTxRef(this.transactionRef)
-                    // .showStagingLabel(false)
                     .allowSaveCardFeature(false)
                     .initialize();
             })
