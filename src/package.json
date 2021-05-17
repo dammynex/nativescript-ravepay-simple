@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-ravepay-simple",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Your awesome NativeScript plugin.",
 	"main": "ravepay-simple",
 	"typings": "index.d.ts",
