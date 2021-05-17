@@ -24,8 +24,8 @@ export function onTap() {
     rave.firstName = "Dammy"
     rave.lastName = "Nex"
     rave.phoneNumber = "09061668519"
-    rave.isStaging = false
-    rave.transactionRef = "lfneioefjoief"
+    rave.isStaging = true
+    rave.transactionRef = "lfneioefjdddoief"
 
 
     rave.pay()

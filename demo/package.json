@@ -3,17 +3,17 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
   "dependencies": {
+    "@nativescript/core": "~8.0.0",
     "@nativescript/theme": "~2.2.1",
-    "nativescript-ravepay-simple": "file:../src",
-    "@nativescript/core": "7.0.0",
-    "@nativescript/webpack": "3.0.0"
+    "nativescript-ravepay-simple": "file:../src"
   },
   "devDependencies": {
-    "@nativescript/android": "7.0.0",
-    "@nativescript/ios": "7.0.0",
-    "typescript": "3.9.7"
+    "@nativescript/android": "8.0.0",
+    "@nativescript/ios": "8.0.0",
+    "@nativescript/webpack": "~5.0.0-beta.0",
+    "typescript": "~4.0.0"
   },
   "gitHead": "fa98f785df3fba482e5e2a0c76f4be1fa6dc7a14",
   "readme": "NativeScript Application",
-  "main": "app.js"
+  "main": "./app/app.ts"
 }

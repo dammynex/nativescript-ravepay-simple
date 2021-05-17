@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
 		"module": "esnext",
-    "target": "es2017",
-    "moduleResolution": "node",
+		"target": "es2017",
+		"moduleResolution": "node",
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"noEmitHelpers": true,
@@ -10,7 +10,8 @@
 		"skipLibCheck": true,
 		"lib": [
 			"es6",
-			"dom"
+			"dom",
+			"es2017"
 		],
 		"baseUrl": ".",
 		"paths": {
@@ -20,7 +21,8 @@
 			"*": [
 				"./node_modules/*"
 			]
-		}
+		},
+		"removeComments": false
 	},
 	"exclude": [
 		"node_modules",
