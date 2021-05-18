@@ -1,5 +1,6 @@
 import { Common, PaymentOptions, PaymentResponse } from './ravepay-simple.common';
-import {
+import
+{
     AndroidApplication,
     AndroidActivityResultEventData,
     Application
@@ -11,24 +12,31 @@ const RaveUiManager = com.flutterwave.raveandroid.RaveUiManager;
 const RaveConstants = com.flutterwave.raveandroid.rave_java_commons.RaveConstants;
 const RavePayActivity = com.flutterwave.raveandroid.RavePayActivity;
 
-export class RavepaySimple extends Common implements PaymentOptions {
+export class RavepaySimple extends Common implements PaymentOptions
+{
 
     private _config;
 
-    constructor() {
+    constructor()
+    {
         super();
         this._config = new RaveUiManager(Application.android.foregroundActivity);
     }
 
-    get android() {
+    get android()
+    {
         return this._config;
     }
 
-    pay(): Promise<PaymentResponse> {
+    pay(): Promise<PaymentResponse>
+    {
 
-        return new Promise((resolve, reject) => {
-            this.init().then(() => {
-                Application.android.on(AndroidApplication.activityResultEvent, (args: AndroidActivityResultEventData) => {
+        return new Promise((resolve, reject) =>
+        {
+            this.init().then(() =>
+            {
+                Application.android.on(AndroidApplication.activityResultEvent, (args: AndroidActivityResultEventData) =>
+                {
 
                     Application.android.off(AndroidApplication.activityResultEvent);
 
@@ -36,22 +44,26 @@ export class RavepaySimple extends Common implements PaymentOptions {
                     let resultCode = args.resultCode;
                     let data = args.intent;
 
-                    if (requestCode != RaveConstants.RAVE_REQUEST_CODE) {
+                    if (requestCode != RaveConstants.RAVE_REQUEST_CODE)
+                    {
                         return;
                     }
 
                     let response = JSON.parse(data.getStringExtra('response'));
                     let resdata = response ? response.data : null;
 
-                    if (resultCode == RavePayActivity.RESULT_SUCCESS) {
+                    if (resultCode == RavePayActivity.RESULT_SUCCESS)
+                    {
                         return resolve(new PaymentResponse(RavepaySimple.PAYMENT_SUCCESS, resdata));
                     }
 
-                    if (resultCode == RavePayActivity.RESULT_ERROR) {
+                    if (resultCode == RavePayActivity.RESULT_ERROR)
+                    {
                         return resolve(new PaymentResponse(RavepaySimple.PAYMENT_ERROR, resdata));
                     }
 
-                    if (resultCode == RavePayActivity.RESULT_CANCELLED) {
+                    if (resultCode == RavePayActivity.RESULT_CANCELLED)
+                    {
                         return resolve(new PaymentResponse(RavepaySimple.PAYMENT_CANCELLED, resdata));
                     }
 
@@ -62,7 +74,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
                 this._config
                     .setAmount(amount)
-                    .setCountry(this.country)
+                    //.setCountry(this.country)
                     .setCurrency(this.currency)
                     .setEmail(this.email)
                     .setfName(this.firstName)
@@ -70,12 +82,29 @@ export class RavepaySimple extends Common implements PaymentOptions {
                     .setPublicKey(this.publicKey)
                     .setEncryptionKey(this.encryptionKey)
                     .onStagingEnv(this.isStaging)
-                    .acceptCardPayments(true)
                     .setTxRef(this.transactionRef)
-                    .allowSaveCardFeature(false)
+                    .acceptAccountPayments(this.acceptAccountPayments)
+                    .acceptCardPayments(this.acceptCardPayments)
+                    .acceptMpesaPayments(this.acceptMpesaPayments)
+                    .acceptGHMobileMoneyPayments(this.acceptGHMobileMoneyPayments)
+                    .acceptUgMobileMoneyPayments(this.acceptUgMobileMoneyPayments)
+                    .acceptZmMobileMoneyPayments(this.acceptRwfMobileMoneyPayments)
+                    .acceptRwfMobileMoneyPayments(this.acceptRwfMobileMoneyPayments)
+                    .acceptSaBankPayments(this.acceptSaBankPayments)
+                    .acceptUkPayments(this.acceptUkPayments)
+                    .acceptBankTransferPayments(this.acceptBankTransferPayments)
+                    .acceptUssdPayments(this.acceptUssdPayments)
+                    .acceptBarterPayments(this.acceptBarterPayments)
+                    .acceptFrancMobileMoneyPayments(this.acceptFrancMobileMoneyPayments)
+                    .allowSaveCardFeature(this.allowSaveCardFeature)
+                    .withTheme(this.theme)
+                    .isPreAuth(this.isPreAuth)
+                    .shouldDisplayFee(this.shouldDisplayFee)
+                    .showStagingLabel(this.showStagingLabel)
+                    .allowSaveCardFeature(this.allowSaveCardFeature)
                     .initialize();
             })
-            .catch(reject);
+                .catch(reject);
         });
     }
 }
