@@ -1,7 +1,7 @@
 import { Common, PaymentOptions, PaymentResponse } from './ravepay-simple.common';
 import { Frame } from '@nativescript/core';
 
-declare const NSFlutterwave, NSFlutterwaveDelegate, NSObject;
+declare const NSRave, NSRaveDelegate, NSObject;
 
 export class RavepaySimple extends Common implements PaymentOptions {
 
@@ -9,7 +9,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
     constructor() {
         super();
-        this._rave = NSFlutterwave.new();
+        this._rave = NSRave.new();
     }
 
     get ios() {
@@ -34,7 +34,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
                         reject(new PaymentResponse(RavepaySimple.PAYMENT_CANCELLED, null))
                     }
                 }, {
-                    protocols: [NSFlutterwaveDelegate]
+                    protocols: [NSRaveDelegate]
                 });
 
 
@@ -55,7 +55,7 @@ export class RavepaySimple extends Common implements PaymentOptions {
 
                 // @ts-ignore
                 let view = <UIViewController>Frame.topmost().currentPage.ios;
-                rave.initFlutterwaveWithView(view);
+                rave.initRaveWithView(view);
             })
             .catch(reject);
         });
