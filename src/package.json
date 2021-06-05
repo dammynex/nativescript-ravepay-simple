@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-ravepay-simple",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Flutterwave plugin for Nativescript. Receive payments in your Nativescript app using Flutterwave",
 	"main": "ravepay-simple",
 	"typings": "index.d.ts",
