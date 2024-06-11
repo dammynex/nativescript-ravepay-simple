@@ -3,7 +3,7 @@ export class PaymentResponse {
   ref: String;
   data: any;
 
-  constructor(status: String, data: any, ref: String = '') {
+  constructor(status: String, data: any, ref: String = "") {
     this.status = status;
     this.data = data;
     this.ref = ref;
@@ -11,7 +11,6 @@ export class PaymentResponse {
 }
 
 export interface PaymentOptions {
-
   amount: String;
 
   country: String;
@@ -40,10 +39,9 @@ export interface PaymentOptions {
 }
 
 export class Common {
-
-  static PAYMENT_SUCCESS: String = 'success';
-  static PAYMENT_ERROR: String = 'error';
-  static PAYMENT_CANCELLED: String = 'cancelled';
+  static PAYMENT_SUCCESS: String = "success";
+  static PAYMENT_ERROR: String = "error";
+  static PAYMENT_CANCELLED: String = "cancelled";
 
   public amount: String;
 
@@ -65,51 +63,59 @@ export class Common {
 
   public isStaging: Boolean = true;
 
+  public acceptBankTransferPayments: Boolean = true;
+
+  public acceptUssdPayments: Boolean = false;
+
+  public acceptCardPayment: Boolean = true;
+
+  public allowSaveCardFeature: Boolean = false;
+
   public transactionRef: String;
 
   init(): Promise<PaymentResponse> {
     return new Promise((resolve, reject) => {
-        if (!this.amount) {
-            return reject(new Error('Enter amount to charge'));
-        }
+      if (!this.amount) {
+        return reject(new Error("Enter amount to charge"));
+      }
 
-        if (!this.country) {
-            return reject(new Error('No country set'));
-        }
+      if (!this.country) {
+        return reject(new Error("No country set"));
+      }
 
-        if (!this.currency) {
-            return reject(new Error('No currency set'));
-        }
+      if (!this.currency) {
+        return reject(new Error("No currency set"));
+      }
 
-        if (!this.email) {
-            return reject(new Error('No email address set'));
-        }
+      if (!this.email) {
+        return reject(new Error("No email address set"));
+      }
 
-        if (!this.phoneNumber) {
-            return reject(new Error('No phone number set'));
-        }
+      if (!this.phoneNumber) {
+        return reject(new Error("No phone number set"));
+      }
 
-        if (!this.firstName) {
-            return reject(new Error('No firstname set'));
-        }
+      if (!this.firstName) {
+        return reject(new Error("No firstname set"));
+      }
 
-        if (!this.lastName) {
-            return reject(new Error('No lastname set'));
-        }
+      if (!this.lastName) {
+        return reject(new Error("No lastname set"));
+      }
 
-        if (!this.encryptionKey) {
-            return reject(new Error('Encryption key not set'));
-        }
+      if (!this.encryptionKey) {
+        return reject(new Error("Encryption key not set"));
+      }
 
-        if (!this.publicKey) {
-            return reject(new Error('Public key not set'));
-        }
+      if (!this.publicKey) {
+        return reject(new Error("Public key not set"));
+      }
 
-        if (!this.transactionRef) {
-            return reject(new Error('Transaction reference not set'));
-        }
+      if (!this.transactionRef) {
+        return reject(new Error("Transaction reference not set"));
+      }
 
-        resolve();
+      resolve();
     });
-}
+  }
 }

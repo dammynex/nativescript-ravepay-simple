@@ -1,4 +1,4 @@
-import { RavepaySimple, PaymentResponse } from 'nativescript-ravepay-simple';
+import { RavepaySimple, PaymentResponse } from "nativescript-ravepay-simple";
 
 /*
 In NativeScript, a file with the same name as an XML file is known as
@@ -16,37 +16,36 @@ export function onNavigatingTo(args: NavigatedData) {
 }
 
 export function onTap() {
-    let rave = new RavepaySimple()
-    rave.amount = "10"
-    rave.email = "damilolaofficial@gmail.com"
-    rave.encryptionKey = "FLWSECK_TESTa274f8991495"
-    rave.publicKey = "FLWPUBK_TEST-f4080f378297f4c5481bcdeb7c406ff2-X"
-    rave.firstName = "Dammy"
-    rave.lastName = "Nex"
-    rave.phoneNumber = "09061668519"
-    rave.isStaging = true
-    rave.transactionRef = "lfneioefjdddoief"
-
+    let rave = new RavepaySimple();
+    rave.amount = "10";
+    rave.email = "damilolaofficial@gmail.com";
+    rave.encryptionKey = "FLWSECK_TESTa274f8991495";
+    rave.publicKey = "FLWPUBK_TEST-f4080f378297f4c5481bcdeb7c406ff2-X";
+    rave.firstName = "Dammy";
+    rave.lastName = "Nex";
+    rave.phoneNumber = "09061668519";
+    rave.isStaging = true;
+    rave.transactionRef = "lfneioefjdddoief";
 
     rave.pay()
-    .then((res: PaymentResponse) => {
-        let {status, data, ref} = res;
+        .then((res: PaymentResponse) => {
+            let { status, data, ref } = res;
 
-        switch(status) {
-            case RavepaySimple.PAYMENT_SUCCESS:
-                console.log('DONE', data);
-                break;
+            switch (status) {
+                case RavepaySimple.PAYMENT_SUCCESS:
+                    console.log("DONE", data);
+                    break;
 
-            case RavepaySimple.PAYMENT_ERROR:
-                console.log('Payment Error');
-                break;
+                case RavepaySimple.PAYMENT_ERROR:
+                    console.log("Payment Error");
+                    break;
 
-            case RavepaySimple.PAYMENT_CANCELLED:
-                setTimeout(() => alert('Payment cancelled'), 1000);
-                break;
-        }
-    })
-    .catch(err => {
-        console.log(err)
-    })
+                case RavepaySimple.PAYMENT_CANCELLED:
+                    setTimeout(() => alert("Payment cancelled"), 1000);
+                    break;
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
